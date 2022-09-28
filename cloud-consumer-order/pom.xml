@@ -16,7 +16,13 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <dependencies>
+        <!--   添加eureka客户端的依赖     -->
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+
             <!-- 引入实体的包-->
             <groupId>com.capsule.springcloud</groupId>
             <artifactId>cloud-api-commons</artifactId>
