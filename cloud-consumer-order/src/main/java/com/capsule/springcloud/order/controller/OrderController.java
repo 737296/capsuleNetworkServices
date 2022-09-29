@@ -18,8 +18,10 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @Slf4j
 public class OrderController {
-    //调用支付订单服务端的ip+端口号
-    public static final String PAYMENT_URL = "http://localhost:8001";
+    //调用支付订单服务端的ip+端口号----------调用单机服务端
+//    public static final String PAYMENT_URL = "http://localhost:8001";
+    //调用支付订单服务端的ip+端口号----------调用集群服务端（服务端支持负载均衡，用注解，轮询）
+    public static final String PAYMENT_URL = "http://mcroservice-payment";
 
     @Autowired
     private RestTemplate restTemplate;
