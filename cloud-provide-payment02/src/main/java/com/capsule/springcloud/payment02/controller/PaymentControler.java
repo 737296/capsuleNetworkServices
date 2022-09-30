@@ -42,5 +42,14 @@ public class PaymentControler {
             return new CommonResult(444,"查询失败",null);
         }
     }
-
+    @GetMapping("/payment/get/serial/{serial}")
+    public CommonResult queryByserial(@PathVariable("serial") String serial){
+        Payment payment = paymentService.queryByserial(serial);
+        log.info("***************查询成功*********"+payment);
+        if(payment!=null){
+            return new CommonResult(200,"查询成功",payment);
+        }else{
+            return new CommonResult(444,"查询失败",null);
+        }
+    }
 }

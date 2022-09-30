@@ -15,6 +15,8 @@
     <select id="queryById" resultType="com.capsule.springcloud.pojo.Payment" parameterType="Long" resultMap="BaseResultMap">
         select * from payment where id = #{id}
     </select>
-
+    <select id="queryByserial" resultType="com.capsule.springcloud.pojo.Payment" parameterType="String" resultMap="BaseResultMap">
+        select * from payment where serial = #{serial}
+    </select>
 
 </mapper>

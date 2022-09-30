@@ -22,4 +22,9 @@ public class PaymentServiceImpl implements PaymentService {
     public Payment queryById(long id) {
         return paymentDao.queryById(id);
     }
+
+    @Override
+    public Payment queryByserial(String serial) {
+        return paymentDao.queryByserial(serial);
+    }
 }

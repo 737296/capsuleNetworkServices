@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
 public interface PaymentDao {
     int create(Payment payment);
     Payment queryById(@Param("id")long id);
-
+    Payment queryByserial(@Param("serial")String serial);
 }
 

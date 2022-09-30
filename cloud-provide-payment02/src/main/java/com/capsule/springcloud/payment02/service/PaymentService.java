@@ -10,4 +10,5 @@ public interface PaymentService {
     int create(Payment payment);
 
     Payment queryById(@Param("id")long id);
+    Payment queryByserial(@Param("serial")String serial);
 }

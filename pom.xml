@@ -17,6 +17,8 @@
         <module>cloud-eureka-server02</module>
 
         <module>cloud-provide-payment02</module>
+        <module>cloud-providerconsul-payment04</module>
+        <module>cloud-consumerconsul-order</module>
     </modules>
 
 
