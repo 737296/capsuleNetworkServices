@@ -10,6 +10,7 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author bolin
@@ -22,6 +23,7 @@ import java.util.List;
 @RestController
 @Slf4j //日志注解
 public class PaymentControler {
+
     @Autowired
     private PaymentService paymentService;
     //注入服务发现的注解
@@ -61,6 +63,12 @@ public class PaymentControler {
             return new CommonResult(444,"查询失败",null);
         }
     }
-
+    //模拟业务接口延时3秒
+    @GetMapping("/payment/feign/timeout")
+    public String PaymentFeignTimeOut() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(3);
+        List<String> services = discoveryClient.getServices();
+        return "8001";
+    }
 
 }
