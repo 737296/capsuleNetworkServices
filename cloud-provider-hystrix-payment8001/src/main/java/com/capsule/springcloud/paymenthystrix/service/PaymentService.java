@@ -9,6 +9,25 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class PaymentService {
+    //熔断测试
+    @HystrixCommand(fallbackMethod = "paymentCircuitBreaker_fallback", commandProperties = {@HystrixProperty(name = "circuitBreaker.enabled", value = "true"),// 是否开启断路器
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),// 请求次数
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), // 时间窗口期
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),// 失败率达到多少后跳闸
+    })
+    public String paymentCircuitBreaker(Integer id) {
+        if (id < 0) {
+            throw new RuntimeException("******id 不能负数");
+        }
+        String serialNumber = IdUtil.simpleUUID();
+        return Thread.currentThread().getName() + "\t" + "调用成功，流水号: " + serialNumber;
+    }
+    //兜底降级的方法
+
+    public String paymentCircuitBreaker_fallback(Integer id) {
+        return "id 不能负数，请稍后再试，/(ㄒoㄒ)/~~   id: " + id;
+    }
+
     /**
      * 正常访问
      *
@@ -26,9 +45,8 @@ public class PaymentService {
      * @return
      */
 
-    @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHabdler",commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
-    } )//服务降级之后调用的新方法 paymentInfo_TimeOutHabdler
+    @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHabdler", commandProperties = {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")})
+//服务降级之后调用的新方法 paymentInfo_TimeOutHabdler
     public String paymentInfo_TimeOut(Integer id) {
         int timeNumber = 2;
         try {
@@ -39,6 +57,7 @@ public class PaymentService {
         }
         return "线程池:" + Thread.currentThread().getName() + " paymentInfo_TimeOut,id:" + id + "\t" + "O(∩_∩)O哈哈~  耗时(秒)" + timeNumber;
     }
+
     /**
      * 超时访问到这里兜底
      *
@@ -46,8 +65,7 @@ public class PaymentService {
      * @return
      */
     public String paymentInfo_TimeOutHabdler(Integer id) {
-        return "线程池:" + Thread.currentThread().getName() + " paymentInfo_TimeOutHabdler,id:" + id + "\t" +
-                "系统繁忙，请稍后再试****o(╥﹏╥)o" ;
+        return "线程池:" + Thread.currentThread().getName() + " paymentInfo_TimeOutHabdler,id:" + id + "\t" + "系统繁忙，请稍后再试****o(╥﹏╥)o";
     }
 
 }

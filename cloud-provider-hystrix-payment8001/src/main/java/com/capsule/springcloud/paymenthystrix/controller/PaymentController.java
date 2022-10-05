@@ -20,6 +20,14 @@ public class PaymentController {
     @Value("${server.port}")
     private String servicePort;
 
+    //熔断的test
+    @GetMapping("/payment/circuit/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id") Integer id) {
+        String result = paymentService.paymentCircuitBreaker(id);
+        log.info("****result: " + result);
+        return result;
+    }
+
     /**
      * 正常访问
      *
