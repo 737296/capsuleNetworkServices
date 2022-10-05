@@ -1,4 +1,0 @@
-com/capsule/springcloud/orderfenign/OrderFeignMain.class
-com/capsule/springcloud/orderfenign/controller/OrderFeignController.class
-com/capsule/springcloud/orderfenign/service/PaymentService.class
-com/capsule/springcloud/orderfenign/config/FeignConfig.class

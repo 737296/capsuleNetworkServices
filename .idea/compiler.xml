@@ -11,6 +11,7 @@
         <module name="cloud-consumer-feign-hystrix-order" />
         <module name="cloud-consumer-hystrix-dashboar" />
         <module name="cloud-api-commons" />
+        <module name="cloud-config-center" />
         <module name="cloud-eureka-server" />
         <module name="cloud-provide-payment02" />
         <module name="cloud-gateway-gateway9527" />
@@ -18,6 +19,7 @@
         <module name="cloud-provide-payment" />
         <module name="cloud-eureka-server02" />
         <module name="cloud-provider-hystrix-payment8001" />
+        <module name="cloud-config-client" />
         <module name="cloud-consumer-feign-order" />
         <module name="cloud-providerconsul-payment04" />
       </profile>
