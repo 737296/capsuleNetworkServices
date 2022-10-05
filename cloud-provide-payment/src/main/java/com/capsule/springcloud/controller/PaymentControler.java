@@ -70,5 +70,9 @@ public class PaymentControler {
         List<String> services = discoveryClient.getServices();
         return "8001";
     }
+    @GetMapping("/payment/lb")
+    public String getPaymentLB() throws InterruptedException {
 
+        return "8001";
+    }
 }
